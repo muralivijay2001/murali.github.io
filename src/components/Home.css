@@ -1,0 +1,40 @@
+
+  /* Larger screens can retain the existing styles */
+  /* .container {
+    padding: 50px;
+  } */
+  
+  .textContainer {
+    margin-top: 30%;
+  }
+  
+  .imageContainer {
+    margin-top: -10%;
+  }
+  
+  .image {
+    width: 100%;
+    height: 100%;
+  }
+
+/* Global styles or within a specific CSS file */
+@media (max-width: 600px) {
+    /* .container {
+      padding: 20px;
+    } */
+    
+    .textContainer {
+      margin-top: 10%; /* Adjust margin-top for mobile view */
+    }
+    
+    .imageContainer {
+      margin-top: 0; /* Reset margin-top for mobile view */
+    }
+    
+    .image {
+      width: 100%;
+      height: auto; /* Maintain aspect ratio for mobile view */
+    }
+  }
+  
+  

@@ -1,6 +1,5 @@
 import React from 'react';
 // import './Header.css';
-import { CardHeader } from '@mui/material';
 
 const Header = () => {
     return (
