@@ -1,17 +1,26 @@
-import React from 'react';
-// import './Experience.css';
+import * as React from 'react';
+import { Box, Typography, Grid } from '@mui/material';
 
 const Experience = () => {
     return (
-        <section id="experience">
-            <h2>Experience</h2>
-            <div>
-                <h3>Job Title</h3>
-                <h4>Company Name</h4>
-                <p>Job Description and responsibilities.</p>
-            </div>
-            {/* Add more job experiences here */}
-        </section>
+        <Grid container spacing={2} className="container">
+            <Grid item xs={12} sm={12} md={6} lg={6}>
+            <Typography variant="h2" gutterBottom>
+                Experience
+            </Typography>
+            <Box sx={{ mb: 4 }}>
+                <Typography variant="h3" gutterBottom>
+                    Job Title
+                </Typography>
+                <Typography variant="h4" color="text.secondary" gutterBottom>
+                    Company Name
+                </Typography>
+                <Typography variant="body1">
+                    Job Description and responsibilities.
+                </Typography>
+            </Box>
+            </Grid>
+        </Grid>
     );
 };
 

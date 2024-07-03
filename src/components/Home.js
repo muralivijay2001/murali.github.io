@@ -1,25 +1,25 @@
 import React from 'react';
 import { Container, Grid, Typography, Button, IconButton } from '@mui/material';
 import { LinkedIn, Instagram } from '@mui/icons-material';
-// import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import home from '../images/home.svg';
 import'./Home.css';
 
-// const CustomTypography = styled(Typography)(({ theme }) => ({
-//     fontFamily: 'auto !important',
-//     color: '#002d5b',
-// }));
+const CustomTypography = styled(Typography)(({ theme }) => ({
+    fontFamily: 'auto !important',
+    color: '#002d5b',
+}));
 
 const Home = () => {
     return (
         <Grid container spacing={2} className="container">
             <Grid item xs={12} sm={12} md={6} lg={6}>
                 <Grid className="textContainer">
-                    <Typography variant="h2">
+                    <CustomTypography variant="h2">
                         I'm Software Engineer
                         <br />
                         Murali
-                    </Typography>
+                    </CustomTypography>
                     <Typography variant="body1" mt={2}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus luctus nec ullamcorper mattis, pulvinar dapibus leo.
                     </Typography>

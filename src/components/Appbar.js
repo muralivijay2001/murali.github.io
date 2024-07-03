@@ -1,40 +1,60 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
+// ** @mui material ** //
+import {AppBar, Box, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText} from '@mui/material';
+import { Button, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-
+//** pages **//
 import About from './About';
 import Experience from './Experience';
 import Home from './Home';
+import Footer from './Footer';
 
-// const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ['Home', 'About', 'Experience', 'Footer'];
 
 function DrawerAppBar(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
+    const homeRef = React.useRef(null);
+    const aboutRef = React.useRef(null);
+    const experienceRef = React.useRef(null);
+    const footerRef = React.useRef(null);
+
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
     };
 
+    const handleNavItemClick = (item) => {
+        setMobileOpen(false);
+        let ref;
+        switch (item) {
+            case 'Home':
+                ref = homeRef;
+                break;
+            case 'About':
+                ref = aboutRef;
+                break;
+            case 'Experience':
+                ref = experienceRef;
+                break;
+            case 'Footer':
+                ref = footerRef;
+                break;
+            default:
+                ref = homeRef;
+        }
+        ref.current.scrollIntoView({ behavior: 'smooth' });
+        handleDrawerToggle();
+    };
+
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'margingLeft', padding: '20px' }}>
-            <Typography variant="h6" sx={{ my: 2, }}>MURALI PALANISAMY</Typography>
+        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', padding: '20px' }}>
+            <Typography variant="h6" sx={{ my: 2 }}>MURALI PALANISAMY</Typography>
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
+                        <ListItemButton sx={{ textAlign: 'center' }} onClick={() => handleNavItemClick(item)}>
                             <ListItemText primary={item} />
                         </ListItemButton>
                     </ListItem>
@@ -50,20 +70,19 @@ function DrawerAppBar(props) {
             <AppBar component="nav" sx={{ backgroundColor: 'white', boxShadow: 'none' }}>
                 <Toolbar>
                     <IconButton
-                        color="darksalmon"
+                        color="inherit"
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
+                        sx={{ mr: 2, display: { sm: 'none' }, color: '#015871' }}
                     >
                         <MenuIcon />
                     </IconButton>
-                    
                     <Box sx={{ display: { xs: 'none', sm: 'block', marginLeft: 'auto' } }}>
                         {navItems.map((item) => (
-                        <Button key={item} sx={{ color: 'darksalmon' }}>
-                            {item}
-                        </Button>
+                            <Button key={item} sx={{ color: 'darksalmon' }} onClick={() => handleNavItemClick(item)}>
+                                {item}
+                            </Button>
                         ))}
                     </Box>
                 </Toolbar>
@@ -79,46 +98,24 @@ function DrawerAppBar(props) {
                     }}
                     sx={{
                         display: { xs: 'block', sm: 'none' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', backgroundColor: 'white' },
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
                     }}
                 >
                     {drawer}
                 </Drawer>
             </nav>
-            <Box component="main"
-                sx={{
-                    width: {
-                        xs: '100%',
-                        sm: '100%',
-                        md: '100%',
-                        lg: '100%',
-                        xl: '100%',
-                    },
-                    height: {
-                        xs: 'auto',
-                        sm: 'auto',
-                        md: '100%',
-                        lg: '100%',
-                        xl: '100%',
-                    },
-                    margin: '0 auto',
-                }} p={{ xs: 3, sm: 1, md: 10, lg: 10, xl: 20 }}>
-                <Home />
-                <About />
-                <Experience />
-                
+            <Box component="main" sx={{ flexGrow: 1, }}>
+                <Box ref={homeRef} sx={{ height: '100vh', width: '100%' }}><Home /></Box>
+                <Box ref={aboutRef} sx={{ height: '100vh', width: '100%' }}><About /></Box>
+                <Box ref={experienceRef} sx={{ height: '100vh', width: '100%' }}><Experience /></Box>
+                <Box ref={footerRef} sx={{ mt: 4 }}><Footer /></Box>
             </Box>
         </Box>
     );
 }
 
-
 DrawerAppBar.propTypes = {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
     window: PropTypes.func,
 };
-  
+
 export default DrawerAppBar;
