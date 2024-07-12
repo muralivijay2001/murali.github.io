@@ -1,6 +1,5 @@
 import React from 'react';
-import { Container, Grid, Typography, Button, IconButton } from '@mui/material';
-import { LinkedIn, Instagram } from '@mui/icons-material';
+import { Grid, Typography} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import home from '../images/home.svg';
 import'./Home.css';

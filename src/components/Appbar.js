@@ -66,7 +66,7 @@ function DrawerAppBar(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box>
             <AppBar component="nav" sx={{ backgroundColor: 'white', boxShadow: 'none' }}>
                 <Toolbar>
                     <IconButton
@@ -95,6 +95,7 @@ function DrawerAppBar(props) {
                     onClose={handleDrawerToggle}
                     ModalProps={{
                         keepMounted: true, // Better open performance on mobile.
+                        disableScrollLock: true, 
                     }}
                     sx={{
                         display: { xs: 'block', sm: 'none' },
